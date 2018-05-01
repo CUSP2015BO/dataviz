@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <script src="https://fb.me/react-with-addons-15.1.0.js"></script>
+  <script src="https://fb.me/react-dom-15.1.0.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega@3"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+<body>
+  <div id="ui"></div>
+  <div id="vis"></div>
+
+  <script type="text/babel">
+      class AppSelectingForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      platform: ''
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  handleSubmit(event) {
+//    var spec = "https://gist.githubusercontent.com/hvo/8febd426e3d12bd430aedc0cd8dd1d41/raw/766342b5a84455fb941607eede525a3b7193946a/DV_Lab7.vg.json";
+//     spec = `http://SERVER_LOCATION/${this.state.platform}/${this.state.rating}`;
+    //var spec = `/vis/${this.state.platform}/${this.state.rating}`;
+    var spec = `/vis/${this.state.platform}`;
+    vegaEmbed('#vis', spec, {actions:false});
+    event.preventDefault();
+  }
+
+  render() {
+
+
+
+
+    return (
+
+    <form onSubmit={this.handleSubmit}>
+        <div>
+        Enter your zipcode (e.g. 10001, 11201, etc. - total is also available) &nbsp;
+
+        <input
+          type="text"
+          name='platform'
+          value={this.state.platform}
+          onChange={this.handleChange}
+        />
+
+    &nbsp; &nbsp;
+    <input type="submit" value="Update your result" />
+
+        </div>
+      </form>
+
+
+    //   <form onSubmit={this.handleSubmit}>
+    //     <label>
+    //       Select your zipcode &nbsp; <br />
+    //       Zipcode &nbsp;
+    //       <select
+    //         name="platform"
+    //         value={this.state.platform}
+    //         onChange={this.handleChange}>
+    //         <option value="total">total</option>
+    //         <option value="10001">10001</option>
+    //         <option value="10002">10002</option>
+    //         <option value="10003">10003</option>
+    //       </select>
+    //       &nbsp; &nbsp;
+    //     </label>
+
+    //     <input type="submit" value="Update your result" />
+    //   </form>
+    );
+  }
+}
+
+
+
+
+
+ReactDOM.render(
+  <div>
+    <AppSelectingForm />
+  </div>,
+  document.getElementById('ui')
+);
+
+  </script>
+
+
+</body>
+</html>
