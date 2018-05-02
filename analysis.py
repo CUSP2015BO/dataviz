@@ -12,7 +12,7 @@ def createChart(data, name=''):
         .mark_bar(stroke="Black") \
         .encode(
             alt.X("rating:Q", axis=alt.Axis(title="The number of restaurants")),
-            alt.Y('name:O', axis=alt.Axis(title="Quisines".format(name)),
+            alt.Y('name:O', axis=alt.Axis(title="Cuisines".format(name)),
                   sort=alt.SortField(field="rating", op="mean", order='descending')),
             alt.ColorValue("LightGrey", condition=color_condition),
         ).properties(
@@ -21,7 +21,7 @@ def createChart(data, name=''):
 
     return alt.hconcat(barMean,
         data=data,
-        title="The number of restaurants ({} in NYC) - Top 25 quisines".format(name)
+        title="The number of restaurants ({} in NYC) - Top 25 cuisines".format(name)
     )
 
 def createFakeChart(data, name=''):
